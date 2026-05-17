@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Css/main.css">
+    <title>Intersted — Store</title>
+    
+</head>
+<body>
+<div id="toast"></div>
+
+        <header>
+        <nav class="navbar">
+            <div class="nav-left">
+                <button class="sidebar-toggle" onclick="history.back()" title="Back">←</button>
+                <a href="../index.html" class="logo">
+                    <img class="logo_img" src="../Images/logo3.0.png" alt="Intersted logo">
+                    <span class="logo_text">Intersted</span>
+                </a>
+            </div>
+            <div class="nav-spacer"></div>
+        <div class="nav-right">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="News.html">News</a></li>
+                    <li><a href="Saved.html">Saved</a></li>
+                    <li><a href="Store.html" class="active">Store</a></li>
+                    <li><a href="Settings.html">Settings</a></li>
+                    <li><a href="ContactUs.html">Contact</a></li>
+                </ul>
+                <div class="notif-wrapper">
+                    <button class="notif-btn" id="notifBtn" title="Notifications">🔔<span class="notif-dot" id="notifDot"></span></button>
+                    <div class="notif-dropdown" id="notifDropdown">
+                        <div class="notif-hdr">Notifications <span class="notif-clear" id="notifClear">Mark all read</span></div>
+                        <div class="notif-item"><span class="notif-icon">❤️</span><div class="notif-body"><div class="notif-text">Sara liked your post</div><div class="notif-time">2 min ago</div></div></div>
+                        <div class="notif-item"><span class="notif-icon">💬</span><div class="notif-body"><div class="notif-text">Karim commented on your post</div><div class="notif-time">15 min ago</div></div></div>
+                        <div class="notif-item"><span class="notif-icon">👥</span><div class="notif-body"><div class="notif-text">Nadia sent you a friend request</div><div class="notif-time">1 hr ago</div></div></div>
+                    </div>
+                </div>
+                <button class="theme-btn" id="themeBtn" title="Toggle dark mode">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="layout-full">
+
+        <!-- ===== LIST AN ITEM BAR ===== -->
+        <div class="list-item-bar">
+            <div class="list-item-bar-title">🛍️ List an Item for Sale</div>
+            <div class="list-item-row">
+                <input type="text" id="itemName" placeholder="Item name">
+                <input type="text" id="itemDesc" placeholder="Short description">
+                <input class="price-input" type="number" id="itemPrice" placeholder="Price $" min="0" step="0.01">
+                <select id="itemCategory">
+                    <option value="">Category…</option>
+                    <option>Premium</option>
+                    <option>Themes</option>
+                    <option>Boosts</option>
+                    <option>Bundles</option>
+                </select>
+            </div>
+            <div class="list-item-actions">
+                <label class="upload-bar-btn">
+                    🖼️ Add Images
+                    <input type="file" id="itemImages" accept="image/*" multiple>
+                </label>
+                <div class="img-preview-row" id="itemImgPreview"></div>
+                <button class="list-submit-btn" id="listItemBtn">Publish Item</button>
+            </div>
+        </div>
+
+        <!-- ===== STORE HEADER + FILTERS ===== -->
+        <div class="store-header">
+            <h2 class="section-title">Store</h2>
+            <div class="filter-bar">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Premium</button>
+                <button class="filter-btn">Themes</button>
+                <button class="filter-btn">Boosts</button>
+                <button class="filter-btn">Bundles</button>
+            </div>
+        </div>
+
+        <!-- ===== PRODUCTS GRID ===== -->
+        <div class="products-grid" id="productsGrid">
+
+            <div class="product-card">
+                <div class="product-img-wrap">
+                    <div class="product-img">🌟</div>
+                    <span class="new-badge">NEW</span>
+                </div>
+                <div class="product-body">
+                    <div class="product-name">Premium Plan</div>
+                    <div class="product-desc">Unlock all features, no ads, priority support.</div>
+                    <div class="product-footer">
+                        <div class="product-price">$4.99 <span>/ mo</span></div>
+                        <button class="add-btn">Get</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-wrap">
+                    <div class="product-img">🎨</div>
+                </div>
+                <div class="product-body">
+                    <div class="product-name">Dark Ember Theme</div>
+                    <div class="product-desc">A sleek dark theme with ember glows.</div>
+                    <div class="product-footer">
+                        <div class="product-price">$1.99</div>
+                        <button class="add-btn">Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-wrap">
+                    <div class="product-img">⚡</div>
+                    <span class="new-badge">HOT</span>
+                </div>
+                <div class="product-body">
+                    <div class="product-name">Feed Boost</div>
+                    <div class="product-desc">Push your posts to 3× more users for 7 days.</div>
+                    <div class="product-footer">
+                        <div class="product-price">$2.49</div>
+                        <button class="add-btn">Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-wrap">
+                    <div class="product-img">🏅</div>
+                </div>
+                <div class="product-body">
+                    <div class="product-name">Verified Badge</div>
+                    <div class="product-desc">Show off your verified status on your profile.</div>
+                    <div class="product-footer">
+                        <div class="product-price">$3.99</div>
+                        <button class="add-btn">Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-wrap">
+                    <div class="product-img">📦</div>
+                </div>
+                <div class="product-body">
+                    <div class="product-name">Starter Bundle</div>
+                    <div class="product-desc">Theme + Boost + Badge at a discounted price.</div>
+                    <div class="product-footer">
+                        <div class="product-price">$6.99 <span style="text-decoration:line-through">$8.47</span></div>
+                        <button class="add-btn">Buy</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-wrap">
+                    <div class="product-img">🎭</div>
+                </div>
+                <div class="product-body">
+                    <div class="product-name">Avatar Frames Pack</div>
+                    <div class="product-desc">10 animated frames for your profile picture.</div>
+                    <div class="product-footer">
+                        <div class="product-price">$1.49</div>
+                        <button class="add-btn">Buy</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>All copyrights belong to <strong>Intersted Group</strong> &nbsp;·&nbsp; Powered by <strong>human's flexibility</strong></p>
+    </footer>
+
+    
+
+
+
+<script src="../Scripts/main.js"></script>
+</body>
+</html>

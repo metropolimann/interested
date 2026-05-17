@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Css/main.css">
+    <title>Intersted — News Feed</title>
+    <style>
+        .feed-layout { display: grid; grid-template-columns: 1fr 300px; gap: 24px; max-width: 1100px; margin: 0 auto; }
+        @media(max-width:900px) { .feed-layout { grid-template-columns: 1fr; } .news-sidebar { display: none; } }
+        .cp-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg,orangered,#4a0a00); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 0.82rem; flex-shrink: 0; }
+        .cp-btn { display: flex; align-items: center; gap: 6px; padding: 7px 13px; border-radius: 20px; border: 1.5px solid rgba(255,69,0,0.25); background: rgba(255,69,0,0.05); color: var(--mid-red); font-size: 0.79rem; font-weight: 600; cursor: pointer; position: relative; overflow: hidden; transition: all var(--transition); }
+        .cp-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+        .cp-btn input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+        .cp-submit { margin-left: auto; background: var(--accent); color: #fff; border: none; padding: 8px 22px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; transition: background var(--transition); }
+        .cp-submit:hover { background: var(--dark-red); }
+        .create-post-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .create-post-top input { flex: 1; border: 2px solid var(--input-border); border-radius: 25px; padding: 9px 16px; font-size: 0.88rem; background: var(--input-bg); outline: none; color: var(--text-dark); margin: 0; transition: border-color var(--transition); }
+        .create-post-top input:focus { border-color: var(--accent); }
+        .create-post-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .news-sidebar { position: sticky; top: 76px; align-self: start; }
+        .sidebar-card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px; margin-bottom: 18px; border: 1px solid var(--card-border); }
+        .sidebar-title { font-size: 0.8rem; font-weight: 700; color: var(--dark-red); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        [data-theme="dark"] .sidebar-title { color: #ffb380; }
+        .trend-item { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--card-border); cursor: pointer; transition: opacity var(--transition); }
+        .trend-item:last-child { border-bottom: none; }
+        .trend-rank { width: 22px; height: 22px; background: rgba(255,69,0,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 700; color: var(--accent); }
+        .trend-name { font-size: 0.83rem; font-weight: 600; color: var(--dark-red); }
+        [data-theme="dark"] .trend-name { color: #ffb380; }
+        .trend-count { font-size: 0.7rem; color: var(--text-muted); }
+        .suggest-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .sug-name { font-size: 0.83rem; font-weight: 600; color: var(--dark-red); }
+        [data-theme="dark"] .sug-name { color: #ffb380; }
+        .sug-mutual { font-size: 0.7rem; color: var(--text-muted); }
+        .follow-btn { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-left: auto; transition: all var(--transition); }
+        .follow-btn:hover { background: var(--accent); color: #fff; }
+        .avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg,orangered,#4a0a00); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 1rem; flex-shrink: 0; }
+    </style>
+</head>
+<body>
+<div id="toast"></div>
+
+        <header>
+        <nav class="navbar">
+            <div class="nav-left">
+                <button class="sidebar-toggle" onclick="history.back()" title="Back">←</button>
+                <a href="../index.html" class="logo">
+                    <img class="logo_img" src="../Images/logo3.0.png" alt="Intersted logo">
+                    <span class="logo_text">Intersted</span>
+                </a>
+            </div>
+            <div class="nav-spacer"></div>
+        <div class="nav-right">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="News.html" class="active">News</a></li>
+                    <li><a href="Saved.html">Saved</a></li>
+                    <li><a href="Store.html">Store</a></li>
+                    <li><a href="Settings.html">Settings</a></li>
+                    <li><a href="ContactUs.html">Contact</a></li>
+                </ul>
+                <div class="notif-wrapper">
+                    <button class="notif-btn" id="notifBtn" title="Notifications">🔔<span class="notif-dot" id="notifDot"></span></button>
+                    <div class="notif-dropdown" id="notifDropdown">
+                        <div class="notif-hdr">Notifications <span class="notif-clear" id="notifClear">Mark all read</span></div>
+                        <div class="notif-item"><span class="notif-icon">❤️</span><div class="notif-body"><div class="notif-text">Sara liked your post</div><div class="notif-time">2 min ago</div></div></div>
+                        <div class="notif-item"><span class="notif-icon">💬</span><div class="notif-body"><div class="notif-text">Karim commented on your post</div><div class="notif-time">15 min ago</div></div></div>
+                        <div class="notif-item"><span class="notif-icon">👥</span><div class="notif-body"><div class="notif-text">Nadia sent you a friend request</div><div class="notif-time">1 hr ago</div></div></div>
+                    </div>
+                </div>
+                <button class="theme-btn" id="themeBtn" title="Toggle dark mode">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="layout-full">
+        <div class="feed-layout">
+
+            <!-- FEED COLUMN -->
+            <div class="feed">
+                <h2 class="section-title" style="margin-bottom:18px">News Feed</h2>
+
+                <!-- CREATE POST / UPLOAD BAR -->
+                <div class="create-post">
+                    <div class="create-post-top">
+                        <div class="cp-avatar">You</div>
+                        <input type="text" id="cpText" placeholder="What's on your mind?">
+                    </div>
+                    <div class="create-post-actions">
+                        <label class="cp-btn">
+                            🖼️ Photo / Video
+                            <input type="file" id="cpMedia" accept="image/*,video/*" multiple>
+                        </label>
+                        <label class="cp-btn">
+                            😊 Feeling
+                            <input type="file" style="display:none">
+                        </label>
+                        <label class="cp-btn">
+                            🏷️ Tag
+                            <input type="file" style="display:none">
+                        </label>
+                        <button class="cp-submit" id="cpBtn">Post</button>
+                    </div>
+                    <div class="media-preview" id="cpPreview"></div>
+                </div>
+
+                <!-- POST 1 -->
+                <article class="post">
+                    <div class="post-header">
+                        <div class="avatar">AM</div>
+                        <div class="post-meta">
+                            <strong>Ahmed M.</strong>
+                            <span>2 hours ago</span>
+                        </div>
+                        <button class="post-options">⋯</button>
+                    </div>
+                    <div class="post-image">🌄</div>
+                    <div class="post-tags">
+                        <span class="tag">#Morocco</span>
+                        <span class="tag">#Travel</span>
+                        <span class="tag">#Nature</span>
+                    </div>
+                    <div class="post-body">
+                        <p>Just visited the Atlas mountains last weekend — absolutely breathtaking views and incredible hospitality from the local villages. Highly recommend everyone to explore more of Morocco!</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn liked" onclick="toggleLike(this)">❤️ 142</button>
+                        <button class="action-btn" onclick="toggleComments(this)">💬 Comments (3)</button>
+                        <button class="action-btn">🔖 Save</button>
+                        <button class="action-btn" onclick="location.href='ReportContent.html'">⚑ Report</button>
+                    </div>
+                    <div class="comments-section open">
+                        <div class="comments-title">Comments · 3</div>
+                        <div class="comment">
+                            <div class="comment-avatar">SL</div>
+                            <div class="comment-bubble">
+                                <strong>Sara L.</strong>
+                                <p>This looks amazing! Which route did you take?</p>
+                                <div class="comment-time">1h ago</div>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="comment-avatar">KM</div>
+                            <div class="comment-bubble">
+                                <strong>Karim M.</strong>
+                                <p>The mountains in Imlil are simply unreal. Great post!</p>
+                                <div class="comment-time">45min ago</div>
+                            </div>
+                        </div>
+                        <div class="add-comment">
+                            <div class="comment-avatar" style="background:linear-gradient(135deg,var(--accent),var(--dark-red));color:#fff">Me</div>
+                            <input type="text" placeholder="Add a comment...">
+                            <button>Post</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- POST 2 -->
+                <article class="post">
+                    <div class="post-header">
+                        <div class="avatar" style="background:linear-gradient(135deg,#e65c00,#f9d423)">FZ</div>
+                        <div class="post-meta">
+                            <strong>Fatima Z.</strong>
+                            <span>5 hours ago</span>
+                        </div>
+                        <button class="post-options">⋯</button>
+                    </div>
+                    <div class="post-tags">
+                        <span class="tag">#Tech</span>
+                        <span class="tag">#AI</span>
+                        <span class="tag">#Future</span>
+                    </div>
+                    <div class="post-body">
+                        <p>Attended a fascinating AI conference in Casablanca today. The future of machine learning in Arabic NLP is looking incredibly promising — lots of breakthroughs coming this year!</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn" onclick="toggleLike(this)">🤍 88</button>
+                        <button class="action-btn" onclick="toggleComments(this)">💬 Comments (1)</button>
+                        <button class="action-btn">🔖 Save</button>
+                        <button class="action-btn" onclick="location.href='ReportContent.html'">⚑ Report</button>
+                    </div>
+                    <div class="comments-section">
+                        <div class="comments-title">Comments · 1</div>
+                        <div class="comment">
+                            <div class="comment-avatar">YB</div>
+                            <div class="comment-bubble">
+                                <strong>Youssef B.</strong>
+                                <p>Very exciting times! Do you have links to the conference talks?</p>
+                                <div class="comment-time">4h ago</div>
+                            </div>
+                        </div>
+                        <div class="add-comment">
+                            <div class="comment-avatar" style="background:linear-gradient(135deg,var(--accent),var(--dark-red));color:#fff">Me</div>
+                            <input type="text" placeholder="Add a comment...">
+                            <button>Post</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- POST 3 -->
+                <article class="post">
+                    <div class="post-header">
+                        <div class="avatar" style="background:linear-gradient(135deg,#1a237e,#3f51b5)">YB</div>
+                        <div class="post-meta">
+                            <strong>Youssef B.</strong>
+                            <span>Yesterday</span>
+                        </div>
+                        <button class="post-options">⋯</button>
+                    </div>
+                    <div class="post-image" style="background:linear-gradient(135deg,#e8eaf6,#9fa8da);font-size:3rem">💻</div>
+                    <div class="post-tags">
+                        <span class="tag">#WebDev</span>
+                        <span class="tag">#University</span>
+                        <span class="tag">#Coding</span>
+                    </div>
+                    <div class="post-body">
+                        <p>Just finished my university project — a full social media platform built from scratch in HTML, CSS, and JS. Proud of the result! 🎉</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn" onclick="toggleLike(this)">🤍 234</button>
+                        <button class="action-btn" onclick="toggleComments(this)">💬 Comments (7)</button>
+                        <button class="action-btn">🔖 Save</button>
+                        <button class="action-btn" onclick="location.href='ReportContent.html'">⚑ Report</button>
+                    </div>
+                    <div class="comments-section">
+                        <div class="comments-title">Comments · 7</div>
+                        <div class="comment">
+                            <div class="comment-avatar">AM</div>
+                            <div class="comment-bubble">
+                                <strong>Ahmed M.</strong>
+                                <p>Congrats! That looks really professional 🔥</p>
+                                <div class="comment-time">22h ago</div>
+                            </div>
+                        </div>
+                        <div class="add-comment">
+                            <div class="comment-avatar" style="background:linear-gradient(135deg,var(--accent),var(--dark-red));color:#fff">Me</div>
+                            <input type="text" placeholder="Add a comment...">
+                            <button>Post</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- RIGHT SIDEBAR -->
+            <aside class="news-sidebar">
+                <div class="sidebar-card">
+                    <div class="sidebar-title">🔥 Trending Topics</div>
+                    <div class="trend-item"><div class="trend-rank">1</div><div><div class="trend-name">#Morocco</div><div class="trend-count">4.2k posts</div></div></div>
+                    <div class="trend-item"><div class="trend-rank">2</div><div><div class="trend-name">#AI2026</div><div class="trend-count">2.8k posts</div></div></div>
+                    <div class="trend-item"><div class="trend-rank">3</div><div><div class="trend-name">#Travel</div><div class="trend-count">1.5k posts</div></div></div>
+                    <div class="trend-item"><div class="trend-rank">4</div><div><div class="trend-name">#WebDev</div><div class="trend-count">920 posts</div></div></div>
+                    <div class="trend-item"><div class="trend-rank">5</div><div><div class="trend-name">#University</div><div class="trend-count">640 posts</div></div></div>
+                </div>
+
+                <div class="sidebar-card">
+                    <div class="sidebar-title">👥 Suggested Friends</div>
+                    <div class="suggest-row">
+                        <div class="avatar" style="width:36px;height:36px;font-size:0.8rem">OA</div>
+                        <div><div class="sug-name">Omar A.</div><div class="sug-mutual">3 mutual</div></div>
+                        <button class="follow-btn" onclick="this.textContent='✓';this.style.background='var(--accent)';this.style.color='#fff'">Follow</button>
+                    </div>
+                    <div class="suggest-row">
+                        <div class="avatar" style="width:36px;height:36px;font-size:0.8rem;background:linear-gradient(135deg,#e65c00,#f9d423)">NR</div>
+                        <div><div class="sug-name">Nadia R.</div><div class="sug-mutual">5 mutual</div></div>
+                        <button class="follow-btn" onclick="this.textContent='✓';this.style.background='var(--accent)';this.style.color='#fff'">Follow</button>
+                    </div>
+                    <a href="Friends.html" style="display:block;text-align:center;font-size:0.78rem;margin-top:12px;color:var(--accent)">See all →</a>
+                </div>
+
+                <div class="sidebar-card">
+                    <div class="sidebar-title">⚡ Quick Links</div>
+                    <div style="display:flex;flex-direction:column;gap:6px">
+                        <a href="Profile.html" style="font-size:0.83rem;color:var(--dark-red);padding:6px 0;border-bottom:1px solid rgba(255,80,20,0.07)">👤 My Profile</a>
+                        <a href="Friends.html" style="font-size:0.83rem;color:var(--dark-red);padding:6px 0;border-bottom:1px solid rgba(255,80,20,0.07)">👥 Friends</a>
+                        <a href="Store.html" style="font-size:0.83rem;color:var(--dark-red);padding:6px 0;border-bottom:1px solid rgba(255,80,20,0.07)">🛍️ Store</a>
+                        <a href="ContactUs.html" style="font-size:0.83rem;color:var(--dark-red);padding:6px 0">✉️ Contact Us</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <p>All copyrights belong to <strong>Intersted Group</strong> &nbsp;·&nbsp; Powered by <strong>human's flexibility</strong></p>
+    </footer>
+
+    
+
+
+<script src="../Scripts/main.js"></script>
+</body>
+</html>

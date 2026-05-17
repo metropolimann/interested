@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff4500"/>
+      <stop offset="100%" style="stop-color:#7a1500"/>
+    </linearGradient>
+  </defs>
+  <!-- flame icon -->
+  <path d="M18 36 C10 28 8 20 14 14 C14 20 18 22 18 22 C18 16 22 10 28 6 C26 14 30 18 28 24 C32 20 32 14 30 10 C36 16 38 24 34 30 C32 34 26 38 18 36Z" fill="url(#g)"/>
+  <!-- dot -->
+  <circle cx="24" cy="30" r="3" fill="bisque"/>
+  <!-- text -->
+  <text x="44" y="27" font-family="Poppins,Arial,sans-serif" font-weight="700" font-size="15" fill="bisque" letter-spacing="0.5">Intersted</text>
+</svg>

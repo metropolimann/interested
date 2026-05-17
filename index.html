@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intersted — Home</title>
+    <link rel="stylesheet" href="Css/main.css">
+</head>
+<body>
+<div id="toast"></div>
+
+<header>
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle" id="sidebarToggle" title="Toggle sidebar">☰</button>
+            <a href="index.html" class="logo">
+                <img class="logo_img" src="./Images/logo3.0.png" alt="Intersted logo">
+                <span class="logo_text">Intersted</span>
+            </a>
+        </div>
+        <div class="nav-spacer"></div>
+        </div>
+        <div class="nav-right">
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="Pages/News.html">News</a></li>
+                <li><a href="Pages/Saved.html">Saved</a></li>
+                <li><a href="Pages/Store.html">Store</a></li>
+                <li><a href="Pages/Settings.html">Settings</a></li>
+                <li><a href="Pages/ContactUs.html">Contact</a></li>
+            </ul>
+            <div class="notif-wrapper">
+                <button class="notif-btn" id="notifBtn" title="Notifications">🔔
+                    <span class="notif-dot" id="notifDot"></span>
+                </button>
+                <div class="notif-dropdown" id="notifDropdown">
+                    <div class="notif-hdr">Notifications <span class="notif-clear" id="notifClear">Mark all read</span></div>
+                    <div class="notif-item"><span class="notif-icon">❤️</span><div class="notif-body"><div class="notif-text">Sara liked your post</div><div class="notif-time">2 min ago</div></div></div>
+                    <div class="notif-item"><span class="notif-icon">💬</span><div class="notif-body"><div class="notif-text">Karim commented: "Great post!"</div><div class="notif-time">15 min ago</div></div></div>
+                    <div class="notif-item"><span class="notif-icon">👥</span><div class="notif-body"><div class="notif-text">Nadia sent you a friend request</div><div class="notif-time">1 hr ago</div></div></div>
+                    <div class="notif-item"><span class="notif-icon">🛍️</span><div class="notif-body"><div class="notif-text">Your item listing is live in the Store</div><div class="notif-time">3 hrs ago</div></div></div>
+                </div>
+            </div>
+            <button class="theme-btn" id="themeBtn" title="Toggle dark mode">🌙</button>
+        </div>
+    </nav>
+</header>
+
+<main class="layout-flex">
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-top">
+            <!-- Search box (hidden by default; toggle via JS) -->
+            <div class="sidebar-search-wrap">
+                <div class="sidebar-search">
+                    <input type="text" id="searchInput" placeholder="Search…">
+                    <img src="Images/search.png" alt="search">
+                </div>
+            </div>
+            <div class="sidebar-section-label">Menu</div>
+            <ul>
+                <li><a href="index.html" class="active"><span class="sidebar-icon">🏠</span>Home</a></li>
+                <li><a href="Pages/News.html"><span class="sidebar-icon">📰</span>News</a></li>
+                <li><a href="Pages/Saved.html"><span class="sidebar-icon">🔖</span>Saved</a></li>
+                <li><a href="Pages/Store.html"><span class="sidebar-icon">🛍️</span>Store</a></li>
+            </ul>
+            <div class="sidebar-section-label">Social</div>
+            <ul>
+                <li><a href="Pages/Friends.html"><span class="sidebar-icon">👥</span>Friends</a></li>
+                <li><a href="Pages/Profile.html"><span class="sidebar-icon">👤</span>Profile</a></li>
+                <li><a href="Pages/Messages.html"><span class="sidebar-icon">💬</span>Messages</a></li>
+            </ul>
+            <div class="sidebar-section-label">Other</div>
+            <ul>
+                <li><a href="Pages/Settings.html"><span class="sidebar-icon">⚙️</span>Settings</a></li>
+                <li><a href="Pages/ContactUs.html"><span class="sidebar-icon">✉️</span>Contact Us</a></li>
+                <li><a href="Pages/log.html"><span class="sidebar-icon">🔒</span>Sign Out</a></li>
+            </ul>
+        </div>
+        <hr>
+        <div class="sidebar-bottom">
+            <p id="copyright_text">All copyrights belong to <strong>Intersted Group</strong><br>Powered by <strong>human's flexibility</strong></p>
+        </div>
+    </div>
+
+    <div class="content-area">
+        <div class="feed-wrapper">
+        <div class="create-post">
+            <div class="create-post-top">
+                <div class="create-avatar">You</div>
+                <input class="create-post-input" id="postText" type="text" placeholder="What's on your mind?">
+            </div>
+            <div class="create-post-actions">
+                <label class="upload-btn">🖼️ Photo/Video<input type="file" id="mediaUpload" accept="image/*,video/*" multiple></label>
+                <label class="upload-btn">📎 File<input type="file" id="fileUpload" accept=".pdf,.doc,.docx,.zip"></label>
+                <label class="upload-btn">😊 Feeling<input type="file" style="display:none"></label>
+                <button class="post-submit-btn" id="postBtn">Post</button>
+            </div>
+            <div class="media-preview" id="mediaPreview"></div>
+        </div>
+
+        <div id="feed">
+            <article class="post">
+                <div class="post-header">
+                    <div class="p-avatar">AM</div>
+                    <div class="post-meta"><strong>Ahmed M.</strong><span>2 hours ago</span></div>
+                    <button class="post-options">⋯</button>
+                </div>
+                <div class="post-image">🌄</div>
+                <div class="post-tags"><span class="tag">#Morocco</span><span class="tag">#Travel</span><span class="tag">#Nature</span></div>
+                <div class="post-body"><p>Just visited the Atlas mountains last weekend — absolutely breathtaking views and incredible hospitality from the local villages. Highly recommend everyone to explore more of Morocco!</p></div>
+                <div class="post-actions">
+                    <button class="action-btn liked" onclick="toggleLike(this)">❤️ 142</button>
+                    <button class="action-btn" onclick="toggleComments(this)">💬 Comments (3)</button>
+                    <button class="action-btn" onclick="savePost(this)">🔖 Save</button>
+                    <button class="action-btn" onclick="location.href='Pages/ReportContent.html'">⚑ Report</button>
+                </div>
+                <div class="comments-section open">
+                    <div class="comments-title">Comments · 3</div>
+                    <div class="comment"><div class="comment-avatar">SL</div><div class="comment-bubble"><strong>Sara L.</strong><p>This looks amazing! Which route did you take?</p><div class="comment-time">1h ago</div></div></div>
+                    <div class="comment"><div class="comment-avatar">KM</div><div class="comment-bubble"><strong>Karim M.</strong><p>The mountains in Imlil are simply unreal. Great post!</p><div class="comment-time">45min ago</div></div></div>
+                    <div class="add-comment">
+                        <div class="comment-avatar" style="background:linear-gradient(135deg,orangered,#4a0a00);color:#fff">Me</div>
+                        <input type="text" placeholder="Add a comment…">
+                        <button>Post</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="post">
+                <div class="post-header">
+                    <div class="p-avatar" style="background:linear-gradient(135deg,#e65c00,#f9d423)">FZ</div>
+                    <div class="post-meta"><strong>Fatima Z.</strong><span>5 hours ago</span></div>
+                    <button class="post-options">⋯</button>
+                </div>
+                <div class="post-tags"><span class="tag">#Tech</span><span class="tag">#AI</span><span class="tag">#Future</span></div>
+                <div class="post-body"><p>Attended a fascinating AI conference in Casablanca today. The future of machine learning in Arabic NLP is looking incredibly promising — lots of breakthroughs coming this year!</p></div>
+                <div class="post-actions">
+                    <button class="action-btn" onclick="toggleLike(this)">🤍 88</button>
+                    <button class="action-btn" onclick="toggleComments(this)">💬 Comments (1)</button>
+                    <button class="action-btn" onclick="savePost(this)">🔖 Save</button>
+                    <button class="action-btn" onclick="location.href='Pages/ReportContent.html'">⚑ Report</button>
+                </div>
+                <div class="comments-section">
+                    <div class="comments-title">Comments · 1</div>
+                    <div class="comment"><div class="comment-avatar">YB</div><div class="comment-bubble"><strong>Youssef B.</strong><p>Very exciting times! Do you have links to the conference talks?</p><div class="comment-time">4h ago</div></div></div>
+                    <div class="add-comment">
+                        <div class="comment-avatar" style="background:linear-gradient(135deg,orangered,#4a0a00);color:#fff">Me</div>
+                        <input type="text" placeholder="Add a comment…"><button>Post</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="post">
+                <div class="post-header">
+                    <div class="p-avatar" style="background:linear-gradient(135deg,#1a237e,#3f51b5)">YB</div>
+                    <div class="post-meta"><strong>Youssef B.</strong><span>Yesterday</span></div>
+                    <button class="post-options">⋯</button>
+                </div>
+                <div class="post-image" style="background:linear-gradient(135deg,#e8eaf6,#9fa8da)">💻</div>
+                <div class="post-tags"><span class="tag">#WebDev</span><span class="tag">#University</span><span class="tag">#Coding</span></div>
+                <div class="post-body"><p>Just finished my university project — a full social platform built from scratch in HTML, CSS &amp; JS. Proud of the result! 🎉</p></div>
+                <div class="post-actions">
+                    <button class="action-btn" onclick="toggleLike(this)">🤍 234</button>
+                    <button class="action-btn" onclick="toggleComments(this)">💬 Comments (7)</button>
+                    <button class="action-btn" onclick="savePost(this)">🔖 Save</button>
+                    <button class="action-btn" onclick="location.href='Pages/ReportContent.html'">⚑ Report</button>
+                </div>
+                <div class="comments-section">
+                    <div class="comments-title">Comments · 7</div>
+                    <div class="comment"><div class="comment-avatar">AM</div><div class="comment-bubble"><strong>Ahmed M.</strong><p>Congrats! That looks really professional 🔥</p><div class="comment-time">22h ago</div></div></div>
+                    <div class="add-comment">
+                        <div class="comment-avatar" style="background:linear-gradient(135deg,orangered,#4a0a00);color:#fff">Me</div>
+                        <input type="text" placeholder="Add a comment…"><button>Post</button>
+                    </div>
+                </div>
+            </article>
+                </div><!-- /feed-wrapper -->
+</div>
+    </div>
+</main>
+
+<footer>
+    <p>All copyrights belong to <strong>Intersted Group</strong> &nbsp;·&nbsp; Powered by <strong>human's flexibility</strong></p>
+</footer>
+
+<script src="Scripts/main.js"></script>
+</body>
+</html>

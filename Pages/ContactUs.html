@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intersted — Contact Us</title>
+    <link rel="stylesheet" href="../Css/main.css">
+</head>
+<body>
+<div id="toast"></div>
+<header>
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle" onclick="history.back()" title="Back">←</button>
+            <a href="../index.html" class="logo">
+                <img class="logo_img" src="../Images/logo3.0.png" alt="Intersted logo">
+                <span class="logo_text">Intersted</span>
+            </a>
+        </div>
+        <div class="nav-spacer"></div>
+        <div class="nav-right">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="News.html">News</a></li>
+                <li><a href="Saved.html">Saved</a></li>
+                <li><a href="Store.html">Store</a></li>
+                <li><a href="Settings.html">Settings</a></li>
+                <li><a href="ContactUs.html" class="active">Contact</a></li>
+            </ul>
+            <div class="notif-wrapper">
+                <button class="notif-btn" id="notifBtn" title="Notifications">🔔<span class="notif-dot" id="notifDot"></span></button>
+                <div class="notif-dropdown" id="notifDropdown">
+                    <div class="notif-hdr">Notifications <span class="notif-clear" id="notifClear">Mark all read</span></div>
+                    <div class="notif-item"><span class="notif-icon">❤️</span><div class="notif-body"><div class="notif-text">Sara liked your post</div><div class="notif-time">2 min ago</div></div></div>
+                    <div class="notif-item"><span class="notif-icon">💬</span><div class="notif-body"><div class="notif-text">Karim commented on your post</div><div class="notif-time">15 min ago</div></div></div>
+                    <div class="notif-item"><span class="notif-icon">👥</span><div class="notif-body"><div class="notif-text">Nadia sent you a friend request</div><div class="notif-time">1 hr ago</div></div></div>
+                </div>
+            </div>
+            <button class="theme-btn" id="themeBtn" title="Toggle dark mode">🌙</button>
+        </div>
+    </nav>
+</header>
+<main class="layout-full">
+    <div class="contact-layout">
+        <h2 class="section-title">Contact Us</h2>
+
+        <div class="contact-info-grid">
+            <div class="contact-info-box">
+                <div class="ci-icon">📧</div>
+                <div class="ci-label">Email</div>
+                <div class="ci-value">support@intersted.com</div>
+            </div>
+            <div class="contact-info-box">
+                <div class="ci-icon">📍</div>
+                <div class="ci-label">Location</div>
+                <div class="ci-value">Tangier, Morocco</div>
+            </div>
+            <div class="contact-info-box">
+                <div class="ci-icon">🕐</div>
+                <div class="ci-label">Hours</div>
+                <div class="ci-value">Mon–Fri, 9am–6pm</div>
+            </div>
+        </div>
+
+        <div class="contact-form-card">
+            <h3>Send us a message</h3>
+            <div style="display:flex;gap:12px;">
+                <div style="flex:1"><input type="text" id="contactName" placeholder="Your Name" required></div>
+                <div style="flex:1"><input type="email" id="contactEmail" placeholder="Your Email" required></div>
+            </div>
+            <input type="text" placeholder="Subject">
+            <textarea id="contactMessage" rows="5" placeholder="Write your message here…"></textarea>
+            <button class="contact-submit-btn" id="contactSubmitBtn">Send Message ✉️</button>
+        </div>
+    </div>
+</main>
+<footer>
+    <p>All copyrights belong to <strong>Intersted Group</strong> &nbsp;·&nbsp; Powered by <strong>human's flexibility</strong></p>
+</footer>
+<script src="../Scripts/main.js"></script>
+</body>
+</html>

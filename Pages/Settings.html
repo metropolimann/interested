@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Css/main.css">
+    <title>Intersted — Settings</title>
+    
+</head>
+<body>
+<div id="toast"></div>
+<header>
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle" onclick="history.back()" title="Back">←</button>
+            <a href="../index.html" class="logo">
+                <img class="logo_img" src="../Images/logo3.0.png" alt="logo">
+                <span class="logo_text">Intersted</span>
+            </a>
+        </div>
+        <div class="nav-spacer"></div>
+        <div class="nav-right">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="News.html">News</a></li>
+                <li><a href="Saved.html">Saved</a></li>
+                <li><a href="Store.html">Store</a></li>
+                <li><a href="Settings.html" class="active">Settings</a></li>
+                <li><a href="ContactUs.html">Contact</a></li>
+            </ul>
+            <button class="theme-btn" id="themeBtn" title="Toggle dark mode">🌙</button>
+        </div>
+    </nav>
+</header>
+<main class="layout-full">
+<div class="settings-layout">
+    <!-- Sidebar nav -->
+    <div class="settings-nav">
+        <div class="s-nav-item active" onclick="showPanel('account',this)"><span class="s-icon">👤</span>Account</div>
+        <div class="s-nav-item" onclick="showPanel('privacy',this)"><span class="s-icon">🔒</span>Privacy</div>
+        <div class="s-nav-item" onclick="showPanel('notifications',this)"><span class="s-icon">🔔</span>Notifications</div>
+        <div class="s-nav-item" onclick="showPanel('appearance',this)"><span class="s-icon">🎨</span>Appearance</div>
+        <div class="s-nav-item" onclick="showPanel('security',this)"><span class="s-icon">🛡️</span>Security</div>
+        <div class="s-nav-item" onclick="showPanel('danger',this)"><span class="s-icon">⚠️</span>Danger Zone</div>
+    </div>
+
+    <!-- Panels -->
+    <div>
+        <!-- ACCOUNT -->
+        <div class="settings-panel active" id="panel-account">
+            <div class="settings-card">
+                <h3>Profile Information</h3>
+                <div class="avatar-edit">
+                    <div class="big-avatar">AM</div>
+                    <div class="avatar-btns">
+                        <button class="save-btn" style="padding:7px 18px;font-size:0.82rem">Change Photo</button>
+                        <button class="danger-btn" style="padding:6px 14px;font-size:0.78rem">Remove</button>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>First Name</label><input type="text" value="Ahmed"></div>
+                    <div class="form-group"><label>Last Name</label><input type="text" value="Mrani"></div>
+                </div>
+                <div class="form-group"><label>Username</label><input type="text" value="@ahmed.mrani"></div>
+                <div class="form-group"><label>Bio</label><textarea rows="3" style="resize:vertical">Passionate about tech, travel, and storytelling. Based in Tangier 🇲🇦</textarea></div>
+                <div class="form-group"><label>Location</label><input type="text" value="Tangier, Morocco"></div>
+                <button class="save-btn" onclick="saveSettings('Profile updated!')">Save Changes</button>
+            </div>
+            <div class="settings-card">
+                <h3>Contact Information</h3>
+                <div class="form-group"><label>Email</label><input type="email" value="ahmed@intersted.com"></div>
+                <div class="form-group"><label>Phone (optional)</label><input type="tel" placeholder="+212 6xx xxx xxx"></div>
+                <button class="save-btn" onclick="saveSettings('Contact info saved!')">Save</button>
+            </div>
+        </div>
+
+        <!-- PRIVACY -->
+        <div class="settings-panel" id="panel-privacy">
+            <div class="settings-card">
+                <h3>Privacy Settings</h3>
+                <div class="setting-row"><div class="setting-info"><div class="setting-label">Private Account</div><div class="setting-desc">Only approved followers see your posts</div></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-info"><div class="setting-label">Show Online Status</div><div class="setting-desc">Let others see when you're active</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-info"><div class="setting-label">Allow Friend Requests</div><div class="setting-desc">Anyone can send you a friend request</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-info"><div class="setting-label">Show Profile in Search</div><div class="setting-desc">Others can find you by name or username</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-info"><div class="setting-label">Allow Tagging</div><div class="setting-desc">Friends can tag you in their posts</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+            </div>
+        </div>
+
+        <!-- NOTIFICATIONS -->
+        <div class="settings-panel" id="panel-notifications">
+            <div class="settings-card">
+                <h3>Notification Preferences</h3>
+                <div class="setting-row"><div class="setting-info"><div class="setting-label">Likes on my posts</div><div class="setting-desc">Get notified when someone likes your post</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-info"><div class="setting-label">Comments</div><div class="setting-desc">Get notified when someone comments</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-info"><div class="setting-label">Friend Requests</div><div class="setting-desc">Notify me of new friend requests</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-info"><div class="setting-label">Messages</div><div class="setting-desc">Notify me of new messages</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-info"><div class="setting-label">Store Updates</div><div class="setting-desc">Notify me of store activity</div></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+                <div class="setting-row"><div class="setting-info"><div class="setting-label">Email Notifications</div><div class="setting-desc">Receive email summaries</div></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+        </div>
+
+        <!-- APPEARANCE -->
+        <div class="settings-panel" id="panel-appearance">
+            <div class="settings-card">
+                <h3>Theme</h3>
+                <div class="setting-label" style="margin-bottom:6px">Color Mode</div>
+                <div class="theme-select">
+                    <div class="theme-option active" id="opt-light" onclick="setTheme('light',this)">☀️ Light</div>
+                    <div class="theme-option" id="opt-dark" onclick="setTheme('dark',this)">🌙 Dark</div>
+                </div>
+            </div>
+            <div class="settings-card">
+                <h3>Language &amp; Region</h3>
+                <div class="form-group"><label>Language</label>
+                    <select><option>English</option><option>Français</option><option>العربية</option><option>Español</option></select>
+                </div>
+                <div class="form-group"><label>Timezone</label>
+                    <select><option>UTC+1 — Casablanca</option><option>UTC+0 — London</option><option>UTC+2 — Cairo</option></select>
+                </div>
+                <button class="save-btn" onclick="saveSettings('Preferences saved!')">Save</button>
+            </div>
+        </div>
+
+        <!-- SECURITY -->
+        <div class="settings-panel" id="panel-security">
+            <div class="settings-card">
+                <h3>Change Password</h3>
+                <div class="form-group"><label>Current Password</label><input type="password" placeholder="••••••••"></div>
+                <div class="form-group"><label>New Password</label><input type="password" placeholder="••••••••"></div>
+                <div class="form-group"><label>Confirm New Password</label><input type="password" placeholder="••••••••"></div>
+                <button class="save-btn" onclick="saveSettings('Password changed!')">Update Password</button>
+            </div>
+            <div class="settings-card">
+                <h3>Two-Factor Authentication</h3>
+                <div class="setting-row"><div class="setting-info"><div class="setting-label">Enable 2FA</div><div class="setting-desc">Add an extra layer of security</div></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+        </div>
+
+        <!-- DANGER ZONE -->
+        <div class="settings-panel" id="panel-danger">
+            <div class="settings-card" style="border-color:rgba(229,57,53,0.3)">
+                <h3 style="color:#e53935">Danger Zone</h3>
+                <div class="setting-row"><div class="setting-info"><div class="setting-label">Deactivate Account</div><div class="setting-desc">Temporarily disable your account</div></div><button class="danger-btn">Deactivate</button></div>
+                <div class="setting-row"><div class="setting-info"><div class="setting-label">Delete Account</div><div class="setting-desc">Permanently delete all your data — this cannot be undone</div></div><button class="danger-btn">Delete Account</button></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</main>
+<footer><p>All copyrights belong to <strong>Intersted Group</strong> &nbsp;·&nbsp; Powered by <strong>human's flexibility</strong></p></footer>
+
+<script src="../Scripts/main.js"></script>
+</body>
+</html>

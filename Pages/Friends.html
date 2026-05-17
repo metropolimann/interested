@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intersted — Friends</title>
+    <link rel="stylesheet" href="../Css/main.css">
+</head>
+<body>
+<div id="toast"></div>
+<header>
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle" onclick="history.back()" title="Back">←</button>
+            <a href="../index.html" class="logo">
+                <img class="logo_img" src="../Images/logo3.0.png" alt="Intersted logo">
+                <span class="logo_text">Intersted</span>
+            </a>
+        </div>
+        <div class="nav-spacer"></div>
+        <div class="nav-right">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="News.html">News</a></li>
+                <li><a href="Saved.html">Saved</a></li>
+                <li><a href="Store.html">Store</a></li>
+                <li><a href="Settings.html">Settings</a></li>
+                <li><a href="ContactUs.html">Contact</a></li>
+            </ul>
+            <div class="notif-wrapper">
+                <button class="notif-btn" id="notifBtn" title="Notifications">🔔<span class="notif-dot" id="notifDot"></span></button>
+                <div class="notif-dropdown" id="notifDropdown">
+                    <div class="notif-hdr">Notifications <span class="notif-clear" id="notifClear">Mark all read</span></div>
+                    <div class="notif-item"><span class="notif-icon">❤️</span><div class="notif-body"><div class="notif-text">Sara liked your post</div><div class="notif-time">2 min ago</div></div></div>
+                    <div class="notif-item"><span class="notif-icon">💬</span><div class="notif-body"><div class="notif-text">Karim commented on your post</div><div class="notif-time">15 min ago</div></div></div>
+                    <div class="notif-item"><span class="notif-icon">👥</span><div class="notif-body"><div class="notif-text">Nadia sent you a friend request</div><div class="notif-time">1 hr ago</div></div></div>
+                </div>
+            </div>
+            <button class="theme-btn" id="themeBtn" title="Toggle dark mode">🌙</button>
+        </div>
+    </nav>
+</header>
+<main class="layout-full">
+    <div class="friends-layout">
+        <div class="friends-header">
+            <h2 class="section-title">Friends</h2>
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="friendSearch" placeholder="Search friends..." oninput="filterFriends()">
+            </div>
+        </div>
+        <div class="friends-tabs">
+            <button class="ftab active" onclick="showFTab('all', this)">All Friends <span class="badge" style="background:var(--accent);margin-left:5px">12</span></button>
+            <button class="ftab" onclick="showFTab('requests', this)">Requests <span class="badge" style="background:var(--dark-red);margin-left:5px">3</span></button>
+            <button class="ftab" onclick="showFTab('suggestions', this)">Suggestions</button>
+        </div>
+
+        <div id="ftab-all">
+            <div class="friends-grid" id="friendsGrid">
+                <div class="friend-card" data-name="Sara Lahrichi">
+                    <div class="friend-avatar" style="background:linear-gradient(135deg,#e65c00,#f9d423)">SL<div class="online-dot"></div></div>
+                    <div class="friend-name">Sara Lahrichi</div>
+                    <div class="friend-handle">@sara.l</div>
+                    <div class="friend-mutual">8 mutual friends</div>
+                    <div class="friend-btn-row">
+                        <button class="btn-primary" onclick="location.href='Profile.html'">Profile</button>
+                        <button class="btn-outline">Msg</button>
+                    </div>
+                </div>
+                <div class="friend-card" data-name="Karim Mansouri">
+                    <div class="friend-avatar" style="background:linear-gradient(135deg,#4a0a00,#c0392b)">KM</div>
+                    <div class="friend-name">Karim Mansouri</div>
+                    <div class="friend-handle">@karim.m</div>
+                    <div class="friend-mutual">3 mutual friends</div>
+                    <div class="friend-btn-row">
+                        <button class="btn-primary" onclick="location.href='Profile.html'">Profile</button>
+                        <button class="btn-outline">Msg</button>
+                    </div>
+                </div>
+                <div class="friend-card" data-name="Fatima Zahra">
+                    <div class="friend-avatar" style="background:linear-gradient(135deg,#880e4f,#e91e63)">FZ<div class="online-dot"></div></div>
+                    <div class="friend-name">Fatima Zahra</div>
+                    <div class="friend-handle">@fz.official</div>
+                    <div class="friend-mutual">11 mutual friends</div>
+                    <div class="friend-btn-row">
+                        <button class="btn-primary" onclick="location.href='Profile.html'">Profile</button>
+                        <button class="btn-outline">Msg</button>
+                    </div>
+                </div>
+                <div class="friend-card" data-name="Youssef Benali">
+                    <div class="friend-avatar" style="background:linear-gradient(135deg,#1a237e,#3f51b5)">YB</div>
+                    <div class="friend-name">Youssef Benali</div>
+                    <div class="friend-handle">@y.benali</div>
+                    <div class="friend-mutual">5 mutual friends</div>
+                    <div class="friend-btn-row">
+                        <button class="btn-primary" onclick="location.href='Profile.html'">Profile</button>
+                        <button class="btn-outline">Msg</button>
+                    </div>
+                </div>
+                <div class="friend-card" data-name="Nadia Rachidi">
+                    <div class="friend-avatar" style="background:linear-gradient(135deg,#006064,#00bcd4)">NR<div class="online-dot"></div></div>
+                    <div class="friend-name">Nadia Rachidi</div>
+                    <div class="friend-handle">@nadia.r</div>
+                    <div class="friend-mutual">7 mutual friends</div>
+                    <div class="friend-btn-row">
+                        <button class="btn-primary" onclick="location.href='Profile.html'">Profile</button>
+                        <button class="btn-outline">Msg</button>
+                    </div>
+                </div>
+                <div class="friend-card" data-name="Omar Alaoui">
+                    <div class="friend-avatar" style="background:linear-gradient(135deg,#33691e,#8bc34a)">OA</div>
+                    <div class="friend-name">Omar Alaoui</div>
+                    <div class="friend-handle">@omar.a</div>
+                    <div class="friend-mutual">2 mutual friends</div>
+                    <div class="friend-btn-row">
+                        <button class="btn-primary" onclick="location.href='Profile.html'">Profile</button>
+                        <button class="btn-outline">Msg</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="ftab-requests" style="display:none">
+            <div class="request-list">
+                <div class="request-item">
+                    <div class="friend-avatar" style="width:48px;height:48px;font-size:1rem;background:linear-gradient(135deg,#e65c00,#f9d423)">HA</div>
+                    <div class="req-info"><strong>Hiba Amrani</strong><span>@hiba.a · 4 mutual friends</span></div>
+                    <div class="req-actions">
+                        <button class="accept-btn" onclick="acceptRequest(this)">Accept</button>
+                        <button class="decline-btn" onclick="declineRequest(this)">Decline</button>
+                    </div>
+                </div>
+                <div class="request-item">
+                    <div class="friend-avatar" style="width:48px;height:48px;font-size:1rem;background:linear-gradient(135deg,#1a237e,#3f51b5)">MB</div>
+                    <div class="req-info"><strong>Mohamed Bakkali</strong><span>@m.bakkali · 1 mutual friend</span></div>
+                    <div class="req-actions">
+                        <button class="accept-btn" onclick="acceptRequest(this)">Accept</button>
+                        <button class="decline-btn" onclick="declineRequest(this)">Decline</button>
+                    </div>
+                </div>
+                <div class="request-item">
+                    <div class="friend-avatar" style="width:48px;height:48px;font-size:1rem;background:linear-gradient(135deg,#880e4f,#e91e63)">LO</div>
+                    <div class="req-info"><strong>Layla Ouazzani</strong><span>@layla.o · 9 mutual friends</span></div>
+                    <div class="req-actions">
+                        <button class="accept-btn" onclick="acceptRequest(this)">Accept</button>
+                        <button class="decline-btn" onclick="declineRequest(this)">Decline</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="ftab-suggestions" style="display:none">
+            <div class="friends-grid">
+                <div class="friend-card">
+                    <div class="friend-avatar" style="background:linear-gradient(135deg,#4e342e,#8d6e63)">RA</div>
+                    <div class="friend-name">Rachid Amrani</div>
+                    <div class="friend-handle">@r.amrani</div>
+                    <div class="friend-mutual">6 mutual friends</div>
+                    <div class="friend-btn-row">
+                        <button class="btn-primary" onclick="this.textContent='✓ Sent';this.style.background='#2e7d32'">Follow</button>
+                    </div>
+                </div>
+                <div class="friend-card">
+                    <div class="friend-avatar" style="background:linear-gradient(135deg,#006064,#26c6da)">ZE</div>
+                    <div class="friend-name">Zineb El Fassi</div>
+                    <div class="friend-handle">@zineb.ef</div>
+                    <div class="friend-mutual">3 mutual friends</div>
+                    <div class="friend-btn-row">
+                        <button class="btn-primary" onclick="this.textContent='✓ Sent';this.style.background='#2e7d32'">Follow</button>
+                    </div>
+                </div>
+                <div class="friend-card">
+                    <div class="friend-avatar" style="background:linear-gradient(135deg,#4a148c,#9c27b0)">IB</div>
+                    <div class="friend-name">Imane Bouzid</div>
+                    <div class="friend-handle">@imane.b</div>
+                    <div class="friend-mutual">5 mutual friends</div>
+                    <div class="friend-btn-row">
+                        <button class="btn-primary" onclick="this.textContent='✓ Sent';this.style.background='#2e7d32'">Follow</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer><p>All copyrights belong to <strong>Intersted Group</strong> &nbsp;·&nbsp; Powered by <strong>human's flexibility</strong></p></footer>
+<script src="../Scripts/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Css/main.css">
+    <title>Intersted — Saved</title>
+    
+</head>
+<body>
+<div id="toast"></div>
+<header>
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle" onclick="history.back()">←</button>
+            <a href="../index.html" class="logo">
+                <img class="logo_img" src="../Images/logo3.0.png" alt="logo">
+                <span class="logo_text">Intersted</span>
+            </a>
+        </div>
+        <div class="nav-spacer"></div>
+        <div class="nav-right">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="News.html">News</a></li>
+                <li><a href="Saved.html" class="active">Saved</a></li>
+                <li><a href="Store.html">Store</a></li>
+                <li><a href="Settings.html">Settings</a></li>
+                <li><a href="ContactUs.html">Contact</a></li>
+            </ul>
+            <button class="theme-btn" id="themeBtn">🌙</button>
+        </div>
+    </nav>
+</header>
+<main class="layout-full">
+    <div class="saved-header">
+        <h2 class="section-title">Saved Posts</h2>
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterSaved('all',this)">All</button>
+            <button class="filter-btn" onclick="filterSaved('Travel',this)">Travel</button>
+            <button class="filter-btn" onclick="filterSaved('Tech',this)">Tech</button>
+            <button class="filter-btn" onclick="filterSaved('Nature',this)">Nature</button>
+        </div>
+    </div>
+
+    <div class="saved-grid" id="savedGrid">
+
+        <div class="saved-card" data-cat="Travel">
+            <div class="saved-thumb">🌄</div>
+            <div class="saved-body">
+                <div class="saved-author"><div class="s-avatar">AM</div><span class="s-author-name">Ahmed M.</span></div>
+                <div class="saved-title">Atlas Mountains Weekend Trip</div>
+                <div class="saved-tags"><span class="tag">#Morocco</span><span class="tag">#Travel</span></div>
+                <div class="saved-snippet">Breathtaking views and incredible hospitality from the local villages of the Atlas mountains…</div>
+                <div class="saved-footer"><span class="saved-time">Saved 2 days ago</span><button class="unsave-btn" onclick="unsave(this)">Unsave</button></div>
+            </div>
+        </div>
+
+        <div class="saved-card" data-cat="Tech">
+            <div class="saved-thumb">🤖</div>
+            <div class="saved-body">
+                <div class="saved-author"><div class="s-avatar" style="background:linear-gradient(135deg,#e65c00,#f9d423)">FZ</div><span class="s-author-name">Fatima Z.</span></div>
+                <div class="saved-title">AI & Arabic NLP Breakthroughs in 2026</div>
+                <div class="saved-tags"><span class="tag">#Tech</span><span class="tag">#AI</span></div>
+                <div class="saved-snippet">The future of machine learning in Arabic NLP is incredibly promising — lots of breakthroughs coming…</div>
+                <div class="saved-footer"><span class="saved-time">Saved 5 hours ago</span><button class="unsave-btn" onclick="unsave(this)">Unsave</button></div>
+            </div>
+        </div>
+
+        <div class="saved-card" data-cat="Tech">
+            <div class="saved-thumb">💻</div>
+            <div class="saved-body">
+                <div class="saved-author"><div class="s-avatar" style="background:linear-gradient(135deg,#1a237e,#3f51b5)">YB</div><span class="s-author-name">Youssef B.</span></div>
+                <div class="saved-title">University Web Project — Full Social Platform</div>
+                <div class="saved-tags"><span class="tag">#WebDev</span><span class="tag">#University</span></div>
+                <div class="saved-snippet">Just finished my university project — a full social platform built from scratch in HTML, CSS & JS…</div>
+                <div class="saved-footer"><span class="saved-time">Saved yesterday</span><button class="unsave-btn" onclick="unsave(this)">Unsave</button></div>
+            </div>
+        </div>
+
+        <div class="saved-card" data-cat="Nature">
+            <div class="saved-thumb">🌊</div>
+            <div class="saved-body">
+                <div class="saved-author"><div class="s-avatar" style="background:linear-gradient(135deg,#006064,#00bcd4)">NR</div><span class="s-author-name">Nadia R.</span></div>
+                <div class="saved-title">Tangier Coastline at Sunset</div>
+                <div class="saved-tags"><span class="tag">#Nature</span><span class="tag">#Morocco</span></div>
+                <div class="saved-snippet">The colours of the Atlantic at golden hour never get old. This city has my heart completely…</div>
+                <div class="saved-footer"><span class="saved-time">Saved 3 days ago</span><button class="unsave-btn" onclick="unsave(this)">Unsave</button></div>
+            </div>
+        </div>
+
+        <div class="saved-card" data-cat="Travel">
+            <div class="saved-thumb">🕌</div>
+            <div class="saved-body">
+                <div class="saved-author"><div class="s-avatar" style="background:linear-gradient(135deg,#4e342e,#8d6e63)">KM</div><span class="s-author-name">Karim M.</span></div>
+                <div class="saved-title">Old Medina — Hidden Gems Guide</div>
+                <div class="saved-tags"><span class="tag">#Travel</span><span class="tag">#Culture</span></div>
+                <div class="saved-snippet">A guide to the alleyways and souks most tourists walk straight past. These are the real gems…</div>
+                <div class="saved-footer"><span class="saved-time">Saved 1 week ago</span><button class="unsave-btn" onclick="unsave(this)">Unsave</button></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="emptyState" style="display:none" class="empty-state">
+        <span class="empty-icon">🔖</span>
+        <p>No saved posts here yet.<br>Hit the Save button on any post to keep it.</p>
+    </div>
+</main>
+<footer><p>All copyrights belong to <strong>Intersted Group</strong> &nbsp;·&nbsp; Powered by <strong>human's flexibility</strong></p></footer>
+
+<script src="../Scripts/main.js"></script>
+</body>
+</html>
